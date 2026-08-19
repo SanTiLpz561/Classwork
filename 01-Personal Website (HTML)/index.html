@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Website - HTML</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      color: #222;
+    }
+
+    #heroes img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+    h1, h2, h3 {
+      color: #1a4d80;
+    }
+
+    img {
+      border-radius: 8px;
+      max-width: 100%;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 15px 0;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f2f5f9;
+    }
+
+    .profile-table img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .small-img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      vertical-align: middle;
+      object-fit: cover;
+    }
+
+    .inline-link {
+      display: inline-block;
+      margin: 5px 10px 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <table class="profile-table">
+      <tr>
+        <td>
+          <img src="yo.png">
+        </td>
+        <td>
+          <h1>Santiago Lopez Estrada</h1>
+          <p><strong>Student</strong></p>
+          <p>Adress: UP GDL</p>
+          <p>I want to be known as a <em>great professional in my field and as a great person</em>.</p>
+          <p><strong>Favorite quote:</strong> “Put yourself in situations where you are not comfortable”</p>
+        </td>
+      </tr>
+    </table>
+  </header>
+
+  <hr>
+
+  <section id="background">
+    <h2>Background</h2>
+    <p>I am someone who has liked coding since high school and I have practiced a bit. My main goal in life as a professional is to feel happy about my job/occupation</p>
+
+    <h3>Education</h3>
+    <ul>
+      <li>
+        <a href="https://francisbacon.edu.mx/" target="_blank">
+          <img class="small-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNER1txpSANMaFhLU-CgJreWhKlrh5ZT4h6AGBfXyUWNW_4NZUMh8xuJ4&s=10" alt="School logo placeholder">
+        </a>
+        <em>2013-2019</em> — <strong><a href="https://francisbacon.edu.mx/">Elementary: Francis Bacon Shool</a></strong>
+      </li>
+      <li>
+        <a href="https://francisbacon.edu.mx/" target="_blank">
+          <img class="small-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNER1txpSANMaFhLU-CgJreWhKlrh5ZT4h6AGBfXyUWNW_4NZUMh8xuJ4&s=10" alt="School logo placeholder">
+        </a>
+        <em>2019-2022</em> — <strong><a href="https://francisbacon.edu.mx/">Elementary: Francis Bacon Shool</a></strong>
+      </li>
+      <li>
+        <a href="https://www.cedi.edu.mx/" target="_blank">
+          <img class="small-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRprhM1isS-5K71dCQ6z9xMAD_2y_P5bi7hqQQEu2PZm8jfSfsVocNFBXlS&s=10" alt="School logo placeholder">
+        </a>
+        <em>2022-2025</em> — <strong><a href="https://www.cedi.edu.mx/">Highschool: Centro de Desarrollo Integral Arboledas</a></strong>
+      </li>
+      <li>
+        <a href="https://www.up.edu.mx/campus-guadalajara/" target="_blank">
+          <img class="small-img" src="https://reqlut2.s3.amazonaws.com/uploads/logos/ae64ce0e5e915be7b8f4eb3fa09cd5beaf49729a-5242880.png" alt="School logo placeholder">
+        </a>
+        <em>2025-Present</em> — <strong><a href="https://www.up.edu.mx/campus-guadalajara/">University: Univesidad Panamericana campus GDL</a></strong>
+      </li>
+    </ul>
+
+    <h3>Skills</h3>
+    <ol>
+      <li>HTML — 60%</li>
+      <li>CSS — 40%</li>
+      <li>JavaScript — 30%</li>
+      <li>Node.js — 0%</li>
+      <li>React — 0%</li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section id="hobbies">
+    <h2>Hobbies: </h2>
+    <h3>Basketball and watching sports in general, playing videogames, spending time with the people I appreciate</h3>
+
+    <h3>My favorite food is pasta</h3>
+    <p><strong>Top 5 cuisines:</strong> Mexican, Japanese, Italian, Greek, Spanish</p>
+    <p><strong>Bottom 3 cuisines:</strong> Russian, Scottish, Australian</p>
+
+    <ul>
+      <li>
+        <img class="small-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRxwlGJ9hakvqFBbBLCRsdQ0VigdK081Tfnnv2RdedqMKgRwJxDmI2mJQ&s=10">
+        <strong>Books</strong>
+        <ul>
+          <li>Game of thrones</li>
+          <li>The godfather</li>
+          <li>Hunger games</li>
+        </ul>
+      </li>
+      <li>
+        <img class="small-img" src="https://p.turbosquid.com/ts-thumb/Hx/Uo7wjV/BXrI32ve/moviecamera1gfh/jpg/1302759998/1920x1080/fit_q87/53a87ea8f2ae425ab6e5532a8a2949374da25ed6/moviecamera1gfh.jpg">
+        <strong>Movies</strong>
+        <ul>
+          <li>Movie One</li>
+          <li>Series One</li>
+          <li>Movie Two</li>
+        </ul>
+      </li>
+      <li>
+        <img class="small-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgswEX8dpdpc-3fVKkgOZhdLC_Mj6km_oYvB7YwkHFco90hEms9stpE9RhaMc6f4fk9IlgnJVpExJKmUMIAMcy91CsxGcB1N6CmGrsStfuAorRzcy2QjSy5Qaa0tsNbQ8XbjSk02y3vkvfW/w1200-h630-p-k-no-nu/TV+SHOWS.png">
+        <strong>TV Shows</strong>
+        <ul>
+          <li>Movie One</li>
+          <li>Series One</li>
+          <li>Movie Two</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="favorites">
+    <h2><a href="destination.html">My Favorite Spots</a></h2>
+    <p>Visit some of my favorite destinations:</p>
+    <ul>
+      <li class="inline-link"><a href="destination.html#paris">Paris</a></li>
+      <li class="inline-link"><a href="destination.html#kyoto">Kyoto</a></li>
+      <li class="inline-link"><a href="destination.html#reykjavik">Reykjavík</a></li>
+      <li class="inline-link"><a href="destination.html#cape-town">Cape Town</a></li>
+      <li class="inline-link"><a href="destination.html#new-york">New York</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="heroes">
+    <h2>Heroes, Writers, and Musicians</h2>
+    <table>
+      <tr>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Date of Birth / Death</th>
+        <th>Profession</th>
+        <th>Achievement / Famous Work</th>
+      </tr>
+      <tr>
+        <td><img src="https://static01.nyt.com/images/2026/03/17/arts/GettyImages-2241119397/GettyImages-2241119397-jumbo.jpg?auto=webp&quality=75"></td>
+        <td>Stephen Curry</td>
+        <td>1988 - Present</td>
+        <td>NBA player</td>
+        <td>4 time NBA champ, 2 times MVP and one time finals MVP</td>
+      </tr>
+      <tr>
+        <td><img src="https://www.univision.com/_next/image?url=https%3A%2F%2Fst1.uvnimg.com%2F81%2Fa4%2Fcbbd6588466fb2f19ad794230db7%2FGETTY2.jpg&w=1280&q=75"></td>
+        <td>Juan Gabriel</td>
+        <td>1950 - 2016</td>
+        <td>Singer-songwriter</td>
+        <td>He wrote over 1,500 songs and sold tens of millions of records during his career</td>
+      </tr>
+      <tr>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Portrait_photoshoot_at_Worldcon_75%2C_Helsinki%2C_before_the_Hugo_Awards_%E2%80%93_George_R._R._Martin_%28cropped%29.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original"></td>
+        <td>George R. Martin</td>
+        <td>1948 - Present</td>
+        <td>Author and television producer</td>
+        <td> best known for creating the epic fantasy series A Song of Ice and Fire and co-executive producing its adaptation Game of Thrones, earning multiple Hugo, Nebula, and Emmy Awards.</td>
+      </tr>
+    </table>
+  </section>
+
+  <hr>
+
+  <section id="weekly-schedule-table">
+    <h2>Weekly Schedule</h2>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Description</th>
+        <th>Place</th>
+        <th>Type</th>
+        <th>Notes</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>2026-08-03</td>
+        <td>09:00</td>
+        <td>10:00</td>
+        <td>Study session</td>
+        <td>Library</td>
+        <td>School</td>
+        <td>Bring notes</td>
+        <td><input type="checkbox"> Busy <br> <input type="checkbox"> Free</td>
+      </tr>
+      <tr>
+        <td>2026-08-04</td>
+        <td>18:30</td>
+        <td>20:00</td>
+        <td>Gym workout</td>
+        <td>Fitness center</td>
+        <td>Personal</td>
+        <td>Hydrate before</td>
+        <td><input type="checkbox"> Busy <br> <input type="checkbox"> Free</td>
+      </tr>
+      <tr>
+        <td>2026-08-05</td>
+        <td>14:00</td>
+        <td>15:00</td>
+        <td>Team meeting</td>
+        <td>Office</td>
+        <td>Professional</td>
+        <td>Prepare slides</td>
+        <td><input type="checkbox"> Busy <br> <input type="checkbox"> Free</td>
+      </tr>
+    </table>
+  </section>
+
+  <hr>
+
+  <section id="weekly-schedule-form">
+    <h2>Weekly Schedule Form</h2>
+    <form>
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date"><br><br>
+
+      <label for="start">Time start:</label><br>
+      <input type="time" id="start" name="start"><br><br>
+
+      <label for="end">Time end:</label><br>
+      <input type="time" id="end" name="end"><br><br>
+
+      <label for="activity">Activity:</label><br>
+      <input type="text" id="activity" name="activity"><br><br>
+
+      <label for="place">Place:</label><br>
+      <input type="text" id="place" name="place"><br><br>
+
+      <label for="type">Type:</label><br>
+      <select id="type" name="type">
+        <option value="school">School</option>
+        <option value="personal">Personal</option>
+        <option value="professional">Professional</option>
+        <option value="familiar">Familiar</option>
+        <option value="other">Other</option>
+      </select><br><br>
+
+      <label for="notes">Notes:</label><br>
+      <textarea id="notes" name="notes" rows="4" cols="40"></textarea><br><br>
+
+      <label for="flag">Flag:</label><br>
+      <input type="color" id="flag" name="flag"><br><br>
+
+      <label for="freebusy">Free/Busy:</label>
+      <input type="checkbox" id="freebusy" name="freebusy"><br><br>
+
+      <button type="submit">Save Schedule</button>
+    </form>
+  </section>
+</body>
+</html>

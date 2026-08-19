@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+}
+
+.top{
+    background-color: blue;
+    width: 200px;
+    height: 600px;
+    float: left;
+}
+
+.mid{
+    background-color: yellow;
+    width: 200px;
+    height: 600px;
+    float: left;
+}
+
+.bot{
+    background-color: red;
+    width: 200px;
+    height: 600px;
+    float: left;
+}

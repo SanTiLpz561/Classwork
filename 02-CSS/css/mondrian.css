@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #ddd;
+}
+
+.painting {
+    width: 600px;
+    height: 600px;
+    margin: 50px auto;
+    background-color: lightgray;
+    border: 10px solid black;
+    position: relative;
+}
+
+.red {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 45%;
+    background-color: red;
+    border-right: 10px solid black;
+    border-bottom: 10px solid black;
+}
+
+.white1 {
+    position: absolute;
+    left: 60%;
+    top: 0;
+    width: 40%;
+    height: 45%;
+    background-color: black;
+    border-bottom: 10px solid black;
+}
+
+.blue {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    width: 25%;
+    height: 55%;
+    background-color: blue;
+    border-right: 10px solid black;
+    border-bottom: 10px solid black;
+}
+
+.yellow {
+    position: absolute;
+    left: 25%;
+    top: 45%;
+    width: 35%;
+    height: 25%;
+    background-color: yellow;
+    border-right: 10px solid black;
+    border-bottom: 10px solid black;
+}
+
+.white2 {
+    position: absolute;
+    left: 60%;
+    top: 45%;
+    width: 40%;
+    height: 55%;
+    background-color: white;
+    border-bottom: 10px solid black;
+}
+
+.gray {
+    position: absolute;
+    left: 25%;
+    top: 70%;
+    width: 35%;
+    height: 30%;
+    background-color: grey;
+    border-bottom: 10px solid black;
+    border-right: 10px solid black;
+
+}
