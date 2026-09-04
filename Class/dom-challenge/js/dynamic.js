@@ -29,6 +29,8 @@ const createActionCard = (text, priority) => {
         li.classList.add('priority-low');
         break;
 }
+
+let badgecolor
     
     // 2d. Construct interior HTML with text nodes, priority badges, action button icons
 
@@ -56,9 +58,12 @@ const createActionCard = (text, priority) => {
 // ==========================================
 // 3. TODO: STATE COUNTER MANAGER
 // ==========================================
+//let total = 0;
 const updateCounter = () => {
     // Calculate total children nodes inside actionList and update cardCounter display.
     cardCounter.textContent = actionList.children.length
+    const completedElements = actionList.querySelectorAll('.impact-card.completed').length;
+    cardCounter.textContent = `Total tasks: ${totalElements - completedElements}`;
 };
 
 // ==========================================
@@ -93,7 +98,14 @@ actionList.addEventListener('click', (e) => {
 
     // 5c. Implement dynamic operations based on selected action types:
     if (action === 'toggle') {
-        currentCard.classList.toggle('completed');
+        currentCard.style.transition = 'all 0.3s ease';
+        currentCard.style.opacity = '0';
+        currentCard.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            currentCard.remove();
+            updateCounter();
+        }, 300);
+        
         // Toggle complete class on currentCard
     } 
     else if (action === 'delete') {
