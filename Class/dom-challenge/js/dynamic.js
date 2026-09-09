@@ -22,14 +22,17 @@ const createActionCard = (text, priority) => {
     switch (priority) {
     case "high":
         li.classList.add('priority-high');
+        li.style.backgroundColor = "#f8d7da";
         break;
 
     case "medium":
         li.classList.add('priority-medium');
+        li.style.backgroundColor = "#fff3cd";
         break;
 
     case "low":
         li.classList.add('priority-low');
+        li.style.backgroundColor = "#d1e7dd";
         break;
 }
 
