@@ -1,0 +1,160 @@
+body {
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #222;
+}
+
+.scenery-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.mountain {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    z-index: 1;
+}
+
+.cloud {
+    position: sticky;
+    top: 20px;
+    z-index: 2;
+    width: 100px;
+}
+
+.cloud-left {
+    float: left;
+    margin-left: 10%;
+}
+
+.cloud-right {
+    float: right;
+    margin-right: 10%;
+}
+
+.section-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.section-wrapper:nth-of-type(even) {
+    background-color: #EAF6F6;
+}
+
+
+.section-content {
+    max-width: 900px;
+    width: 90%;
+}
+
+h1 {
+    font-family: 'Sacramento', cursive;
+    font-size: 5.5rem;
+    margin: 50px;
+    color: darkblue;
+}
+
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: darkgrey;
+}
+
+hr {
+    border-top: 6px dotted #EAF6F6;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    width: 4%;
+    margin: 100px auto;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+a:hover {
+    color: green;
+}
+
+section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.destination-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.destination-layout > img {
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.destination-layout > div {
+    max-width: 500px;
+}
+
+.destination-layout p {
+    margin-top: 0;
+}
+
+
+.destination-layout ul {
+    text-align: left;
+    display: inline-block;
+    margin: 10px auto;
+}
+
+
+.destination-layout li {
+    margin-bottom: 5px;
+}
+
+.destination-layout div img {
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+img {
+    max-width: 100%;
+}

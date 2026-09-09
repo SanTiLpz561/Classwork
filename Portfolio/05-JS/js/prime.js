@@ -6,6 +6,12 @@
 var getPrimeFactors = function (n) {
   "use strict";
 
+  var calledFromDOM = false;
+  if (typeof n !== "number") {
+    n = parseInt(document.getElementById("num").value, 10);
+    calledFromDOM = true;
+  }
+
   function isPrime(n) {
     var i;
 
@@ -22,9 +28,20 @@ var getPrimeFactors = function (n) {
 
   //TODO: Check which numbers are factors of n and also check if
   // that number also happens to be a prime
+  if (!isNaN(n) && n > 1) {
+    for (i = 2; i <= n; i++) {
+      if (n % i === 0 && isPrime(i)) {
+        sequence.push(i);
+      }
+    }
+  }
+
+  if (calledFromDOM) {
+    document.getElementById("pf").textContent = sequence.join(", ");
+  }
 
   return sequence;
 };
 
 // the prime factors for this number are: [ 2, 3, 5, 7, 11, 13 ]
-console.log(getPrimeFactors(30030));
+//console.log(getPrimeFactors(30030));
