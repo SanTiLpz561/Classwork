@@ -11,11 +11,13 @@ const PORT = 3000;
 app.use(express.json());
 
 // TODO: Serve static files from the 'public' directory so index.html loads on http://localhost:3000
-app.use(express.static('public'));
+app.use(express.static('client'));
 
 // TODO: Mount Routers
 // Mount authRoutes on '/api/auth'
+app.use('/api/auth', authRoutes);
 // Mount apiRoutes on '/api/'
+app.use('/api/initiatives', apiRoutes);
 
 // 404 Unhandled Route Handler
 app.all("/{*splat}", (req, res, next) => {
