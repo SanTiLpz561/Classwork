@@ -1,75 +1,124 @@
 const express = require("express");
 const https = require("https");
-const bodyParser = require("body-parser");
-const axios = require("axios");
-const FormData = require("form-data");
+const path = require("path");
+
+require("dotenv").config({
+    path: path.join(__dirname, "..", ".env")
+});
 
 const app = express();
+const PORT = 3000;
 
-// https get
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
-  var url = "http://placekitten.com/g/300/300";
-  https.get(url, (response) => {
-    console.log(response.statusCode);
-    response.on("data", (data) => {
-      res.write(data);
-      res.send();
-    });
-  });
+    res.sendFile(require("path").join(__dirname, "..", "index.html"));
 });
 
-// https post
-app.get("/dictionary", (req, res) => {
-  var url = "https://api.toys/api/check_dictionary";
-  const form_data = new FormData();
-  form_data.append("text", "marry");
-  const options = {
-    method: "POST",
-    headers: form_data.getHeaders(),
-  };
-  var soapRequest = https.request(url, options, (response) => {
-    if (response.statusCode === 200) {
-      response
-        .on("data", (data) => {
-          var jsonResp = JSON.parse(data);
-          console.log(jsonResp);
-          res.send("Success");
-        })
-        .on("error", (e) => {
-          res.send("Error ${e.message}");
-        });
-    } else {
-      res.send("Error");
+app.post("/", (req, res) => {
+    const city = req.body.cityName;
+    const apiKey = process.env.OPENWEATHER_API_KEY;
+
+    if (!apiKey) {
+        return res.status(500).send(`
+            <h1>Configuration error</h1>
+            <p>The API key is missing.</p>
+            <a href="/">Back to home</a>
+        `);
     }
-  });
-  form_data.pipe(soapRequest);
-});
 
-// axios post
-app.get("/temp", (req, res) => {
-  var url = "https://api.toys/api/check_dictionary";
-  const form_data = new FormData();
-  form_data.append("text", "marry");
-  axios
-    .post(url, form_data, { headers: form_data.getHeaders() })
-    .then((response) => {
-      var data = response.data;
-      console.log(data);
-      if (!data.hasOwnProperty("error")) {
-        console.log("no error");
-        res.send("Success");
-      } else {
-        console.log("Fail");
-        res.send("Fail");
-      }
-    })
-    .catch((err) => {
-      console.log(err.code + ": " + err.message);
-      console.log(err.stack);
-      res.send("Fail error");
+    const url =
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+        encodeURIComponent(city) +
+        "&appid=" + encodeURIComponent(apiKey) +
+        "&units=metric";
+
+    https.get(url, (response) => {
+        let data = "";
+
+        response.on("data", (chunk) => {
+            data += chunk;
+        });
+
+        response.on("end", () => {
+            let weatherData;
+
+            try {
+                weatherData = JSON.parse(data);
+            } catch (error) {
+                return res.status(502).send(`
+                    <h1>Error</h1>
+                    <p>Could not read the weather service response.</p>
+                    <a href="/">Back to home</a>
+                `);
+            }
+
+            if (response.statusCode !== 200) {
+                const message =
+                    weatherData.message || "Unable to get weather data.";
+
+                return res.status(502).send(`
+                    <h1>Weather API Error</h1>
+                    <p>${message}</p>
+                    <a href="/">Back to home</a>
+                `);
+            }
+
+            const temperature = weatherData.main.temp;
+            const description = weatherData.weather[0].description;
+            const icon = weatherData.weather[0].icon;
+            const cityName = weatherData.name;
+
+            const iconUrl =
+                "https://openweathermap.org/img/wn/" +
+                icon + "@2x.png";
+
+            res.send(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport"
+                          content="width=device-width, initial-scale=1.0">
+                    <title>Weather Report</title>
+                </head>
+                <body>
+                    <h1>Weather in ${cityName}</h1>
+                    <h2>${temperature} &deg;C</h2>
+                    <p>${description}</p>
+                    <img src="${iconUrl}" alt="${description}">
+                    <br>
+                    <a href="/">Back to home</a>
+                </body>
+                </html>
+            `);
+        });
+
+        response.on("error", (error) => {
+            console.error("Response error:", error.message);
+
+            if (!res.headersSent) {
+                res.status(502).send(`
+                    <h1>Error</h1>
+                    <p>Could not receive weather data.</p>
+                    <a href="/">Back to home</a>
+                `);
+            }
+        });
+
+    }).on("error", (error) => {
+        console.error("Request error:", error.message);
+
+        if (!res.headersSent) {
+            res.status(502).send(`
+                <h1>Connection Error</h1>
+                <p>Could not connect to the weather service.</p>
+                <a href="/">Back to home</a>
+            `);
+        }
     });
 });
 
-app.listen(3000, () => {
-  console.log("Listening to port 3000");
+app.listen(PORT, () => {
+    console.log(`Listening to port http://localhost:${PORT}`);
 });

@@ -10,15 +10,92 @@
 
 <body>
     <% if (locals.error) { %>
-        <h3>
+        <h3 style="color: red;">
             <%= error %>
         </h3>
+    <% } %>
+
+    <form action="/greet" method="get">
+        Register:
+        <input type="text" name="name" id="name" placeholder="Name">
+        <input type="submit" value="go next">
+    </form>
+
+    <% if (locals.names && names.length > 0) { %>
+        <h3>¡Hola, <%= names[names.length - 1] %>! Bienvenido.</h3>
+    <% } %>
+
+    <hr>
+
+    <h3>Registered Names:</h3>
+    <ul>
+        <% if (locals.names && names.length > 0) { %>
+            <% names.forEach((n, index) => { %>
+                <li>
+                    <a href="/greet/<%= index %>"><%= n %></a>
+                </li>
+            <% }) %>
         <% } %>
-            <form action="/greet" method="get">
-                Register:
-                <input type="text" name="name" id="name" placeholder="Name">
-                <input type="submit" value="go next">
-            </form>
+    </ul>
+
+    <hr>
+
+    <h3>TODO List</h3>
+    <form action="/task" method="post">
+        <input type="text" name="task" placeholder="New Task">
+        <input type="submit" value="Add Task">
+    </form>
+
+    <ul>
+        <% if (locals.tasks && tasks.length > 0) { %>
+            <% tasks.forEach((task, index) => { %>
+                <li>
+                    <%= task %>
+                    <form action="/task/delete/<%= index %>" method="post" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <% if (index > 0) { %>
+                        <form action="/task/up/<%= index %>" method="post" style="display:inline;">
+                            <button type="submit">⬆️</button>
+                        </form>
+                    <% } %>
+                    <% if (index < tasks.length - 1) { %>
+                        <form action="/task/down/<%= index %>" method="post" style="display:inline;">
+                            <button type="submit">⬇️</button>
+                        </form>
+                    <% } %>
+                </li>
+            <% }) %>
+        <% } %>
+    </ul>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form[action="/greet"]');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const nameInput = document.getElementById('name');
+                const name = nameInput.value;
+                
+                if (!name.trim()) return;
+
+                try {
+                    const response = await fetch(`/greet?name=${encodeURIComponent(name)}`);
+                    const html = await response.text();
+
+                    document.open();
+                    document.write(html);
+                    document.close();
+                } catch (error) {
+                    console.error('Error al enviar el formulario:', error);
+                }
+            });
+        });
+    </script>
 
 </body>
 
