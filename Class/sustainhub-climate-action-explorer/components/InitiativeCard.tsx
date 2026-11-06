@@ -33,7 +33,7 @@ const InitiativeCard = ({ initiative }: {
             
             <button 
                 onClick={(e) => {
-                    e.preventDefault(); // 3. ¡CRÍTICO! Esto evita que el clic del botón dispare también el clic del enlace
+                    e.preventDefault();
                     manejarVoto();
                 }} 
                 className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full font-semibold transition-colors"
