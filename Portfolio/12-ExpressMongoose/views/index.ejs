@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo DB - F1 test</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <img src="/images/StarLion.png" alt="lion brewery" />
+    <h1>Welcome to my F1 DB</h1>
+    
+    <form action="/driver" method="POST" id="driverForm">
+        <h2>Driver information</h2>
+        <input type="hidden" name="id" id="driverId" />
+        <input type="text" name="num" id="num" placeholder="Number" required />
+        <input type="text" name="code" id="code" placeholder="Code" required />
+        <input type="text" name="forename" id="forename" placeholder="Name" required />
+        <input type="text" name="surname" id="surname" placeholder="Last name" required />
+        <br />
+        <label for="dob">Date of birth: </label>
+        <input type="date" name="dob" id="dob" required />
+        <label for="url">Biography URL: </label>
+        <input type="url" name="url" id="url" required />
+        <br />
+        <label for="nationality">Nationality: </label>
+        <select name="nationality" id="nationality" required>
+            <option value="British">British</option>
+            <option value="Spanish">Spanish</option>
+            <option value="German">German</option>
+            <option value="French">French</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Australian">Australian</option>
+            <option value="Finnish">Finnish</option>
+            <option value="Dutch">Dutch</option>
+            <option value="Canadian">Canadian</option>
+            <option value="Monegasque">Monegasque</option>
+            <option value="Thai">Thai</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Chinese">Chinese</option>
+            <option value="American">American</option>
+            <option value="Danish">Danish</option>
+        </select>
+        
+        <label for="teamName">Team: </label>
+        <select name="teamName" id="teamName" required>
+            <% teams.forEach(team => { %>
+                <option value="<%= team.name %>"><%= team.name %></option>
+            <% }) %>
+        </select>
+        <p><input type="submit" value="Save Driver" /></p>
+    </form>
+
+    <hr />
+
+    <div style="margin: 20px 0;">
+        <button onclick="toggleView('drivers')" id="btnDrivers">Show by Drivers</button>
+        <button onclick="toggleView('teams')" id="btnTeams">Show by Teams</button>
+    </div>
+
+    <!-- Listado por Pilotos -->
+    <div id="driversListView">
+        <h2>Drivers List</h2>
+        <table border="1" cellpadding="8" style="border-collapse: collapse; background: white;">
+            <thead>
+                <tr>
+                    <th>Num</th>
+                    <th>Code</th>
+                    <th>Full Name</th>
+                    <th>DOB</th>
+                    <th>Nationality</th>
+                    <th>Team</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% drivers.forEach(driver => { %>
+                    <tr id="row-<%= driver._id %>">
+                        <td><%= driver.num %></td>
+                        <td><%= driver.code %></td>
+                        <td><%= driver.forename %> <%= driver.surname %></td>
+                        <td><%= driver.dob ? driver.dob.toISOString().split('T')[0] : '' %></td>
+                        <td><%= driver.nationality %></td>
+                        <td><%= driver.team ? driver.team.name : 'N/A' %></td>
+                        <td>
+                            <button type="button" onclick="editDriver(
+                                '<%= driver._id %>',
+                                '<%= driver.num %>',
+                                '<%= driver.code %>',
+                                '<%= driver.forename %>',
+                                '<%= driver.surname %>',
+                                '<%= driver.dob ? driver.dob.toISOString().split('T')[0] : '' %>',
+                                '<%= driver.url %>',
+                                '<%= driver.nationality %>',
+                                '<%= driver.team ? driver.team.name : '' %>'
+                            )">Edit</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Listado por Equipos -->
+    <div id="teamsListView" style="display:none;">
+        <h2>Teams List</h2>
+        <table border="1" cellpadding="8" style="border-collapse: collapse; background: white;">
+            <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Nationality</th>
+                    <th>Drivers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% teams.forEach(team => { %>
+                    <tr>
+                        <td><%= team.name %></td>
+                        <td><%= team.nationality %></td>
+                        <td>
+                            <ul>
+                                <% drivers.filter(d => d.team && d.team.name === team.name).forEach(d => { %>
+                                    <li><%= d.forename %> <%= d.surname %> (#<%= d.num %>)</li>
+                                <% }) %>
+                            </ul>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function editDriver(id, num, code, forename, surname, dob, url, nationality, teamName) {
+            document.getElementById('driverId').value = id;
+            document.getElementById('num').value = num;
+            document.getElementById('code').value = code;
+            document.getElementById('forename').value = forename;
+            document.getElementById('surname').value = surname;
+            document.getElementById('dob').value = dob;
+            document.getElementById('url').value = url;
+            document.getElementById('nationality').value = nationality;
+            document.getElementById('teamName').value = teamName;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleView(view) {
+            const dView = document.getElementById('driversListView');
+            const tView = document.getElementById('teamsListView');
+            if (view === 'drivers') {
+                dView.style.display = 'block';
+                tView.style.display = 'none';
+            } else {
+                dView.style.display = 'none';
+                tView.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

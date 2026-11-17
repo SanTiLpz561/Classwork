@@ -1,0 +1,16 @@
+{
+  "name": "monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [ "packages/*", "apps/*" ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/client",
+    "build": "npm run build --workspace=apps/client"
+  },
+  "keywords": [],
+  "author": "santiago",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": ""
+}
